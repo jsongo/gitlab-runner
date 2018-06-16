@@ -20,4 +20,5 @@ fi
 
 # launch gitlab-ci-multi-runner passing all arguments
 gitlab-runner register
+echo "Start to run."
 exec gitlab-ci-multi-runner $@
