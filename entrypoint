@@ -18,7 +18,15 @@ if [ -f "${CA_CERTIFICATES_PATH}" ]; then
   cmp --silent "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}" || update_ca
 fi
 
+# 退出的时候取消注册
+unregister() {
+    echo "Unregistering runner ${RUNNER_NAME} ..."
+    gitlab-runner unregister -t "$(gitlab-runner list 2>&1 | tail -n1 | awk '{print $4}' | cut -d'=' -f2)" -n ${RUNNER_NAME}
+    exit $?
+}
+trap 'unregister' EXIT HUP INT QUIT PIPE TERM
+
 # launch gitlab-ci-multi-runner passing all arguments
 gitlab-runner register
-echo "Start to run."
+echo "Start to run..."
 exec gitlab-ci-multi-runner $@
