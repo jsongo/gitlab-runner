@@ -19,5 +19,5 @@ if [ -f "${CA_CERTIFICATES_PATH}" ]; then
 fi
 
 # launch gitlab-ci-multi-runner passing all arguments
-exec gitlab-ci-multi-runner register
+gitlab-runner register
 exec gitlab-ci-multi-runner $@
