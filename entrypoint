@@ -27,6 +27,6 @@ unregister() {
 trap 'unregister' EXIT HUP INT QUIT PIPE TERM
 
 # launch gitlab-ci-multi-runner passing all arguments
-gitlab-runner register
+gitlab-runner register --docker-privileged --docker-volumes /var/run/docker.sock:/var/run/docker.sock
 echo "Start to run..."
 exec gitlab-ci-multi-runner $@
