@@ -19,16 +19,16 @@ if [ -f "${CA_CERTIFICATES_PATH}" ]; then
 fi
 
 # 退出的时候取消注册
-unregister() {
-    echo "Unregistering runner ${RUNNER_NAME} ..."
-    gitlab-runner unregister -t "$(gitlab-runner list 2>&1 | tail -n1 | awk '{print $4}' | cut -d'=' -f2)" -n ${RUNNER_NAME}
-    exit $?
-}
-trap 'unregister' EXIT HUP INT QUIT PIPE TERM
+# unregister() {
+#     echo "Unregistering runner ${RUNNER_NAME} ..."
+#     gitlab-runner unregister -t "$(gitlab-runner list 2>&1 | tail -n1 | awk '{print $4}' | cut -d'=' -f2)" -n ${RUNNER_NAME}
+#     exit $?
+# }
+# trap 'unregister' EXIT HUP INT QUIT PIPE TERM
 
 # launch gitlab-ci-multi-runner passing all arguments
-if [ ! -f /etc/gitlab-runner/config.toml ]; then
-    gitlab-runner register --docker-privileged --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+if [ ! -f /etc/gitlab-runner/config.toml ] || [ ! $TO_REGISTER ]; then
+    gitlab-runner register --docker-privileged
 fi
 echo "Start to run..."
 exec gitlab-ci-multi-runner $@
