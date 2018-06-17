@@ -23,7 +23,7 @@ RUN chmod +x /entrypoint
 
 ADD https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl /kubectl
 RUN chmod +x /kubectl && \
-    echo "kubectl --kubeconfig=/root/.k8s/k8s.conf $@" > /usr/bin/kubectl && \
+    echo "/kubectl --kubeconfig=/root/.k8s/k8s.conf $@" > /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl
 
 VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
