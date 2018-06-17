@@ -21,6 +21,8 @@ RUN wget -O /usr/bin/gitlab-ci-multi-runner https://gitlab-ci-multi-runner-downl
 ADD entrypoint /
 RUN chmod +x /entrypoint
 
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.8.3/bin/linux/amd64/kubectl /usr/bin/kubectl
+
 VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
 ENTRYPOINT ["/usr/bin/dumb-init", "/entrypoint"]
 CMD ["run", "--working-directory=/home/gitlab-runner"]
