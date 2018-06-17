@@ -37,9 +37,9 @@ if [ $REGISTER_CONF_FILE ]; then
     sed -i 's/token = "[^\"]*"/token = "'$token'"/' /etc/gitlab-runner/config.toml
     # if [ $TO_REGISTER ]; then
     # 重新注册一遍
-    gitlab-runner register --docker-privileged -c /etc/gitlab-runner/config.toml
+    # gitlab-runner register --docker-privileged -c /etc/gitlab-runner/config.toml
     # fi
 fi
 # fi
 echo "Start to run..."
-exec gitlab-ci-multi-runner $@
+exec gitlab-runner $@
