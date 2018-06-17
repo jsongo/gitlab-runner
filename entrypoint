@@ -27,7 +27,7 @@ fi
 # trap 'unregister' EXIT HUP INT QUIT PIPE TERM
 
 # launch gitlab-ci-multi-runner passing all arguments
-if [ ! -f /etc/gitlab-runner/config.toml ] || [ ! $TO_REGISTER ]; then
+if [ ! -f /etc/gitlab-runner/config.toml ] || [ $TO_REGISTER ]; then
     gitlab-runner register --docker-privileged
 fi
 echo "Start to run..."
