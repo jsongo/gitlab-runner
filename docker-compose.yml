@@ -10,5 +10,5 @@ services:
             - VERSION=0.1.16
             - RUNNER_DOCKER_IMAGE=docker:stable
         volumes:
-            - /etc/gitlab-runner/config.toml:/etc/gitlab-runner/config.toml
+            - ./config.toml:/etc/gitlab-runner/config.toml
             - /var/run/docker.sock:/var/run/docker.sock
