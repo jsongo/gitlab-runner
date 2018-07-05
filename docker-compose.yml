@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    test-go:
+        image: jsongo/gitlab-runner:k8s
+        container_name: frontend-runner-01
+        command: run
+        restart: always
+        environment:
+            - VERSION=0.1.16
+            - RUNNER_DOCKER_IMAGE=docker:stable
+        volumes:
+            - /etc/gitlab-runner/config.toml:/etc/gitlab-runner/config.toml
+            - /var/run/docker.sock:/var/run/docker.sock
