@@ -2,6 +2,7 @@ version: '2'
 
 services:
     test-go:
+        # build: .
         image: jsongo/gitlab-runner:k8s
         container_name: frontend-runner-01
         command: run
