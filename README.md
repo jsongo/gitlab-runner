@@ -1,3 +1,5 @@
+## 用户运行 k8s-runner 的镜像  
+现成可用：jsongo/gitlab-runner:k8s  
 
 ## 环境变量说明
 > NEW_REGISTER 强制进行重新注册（true or false）  
