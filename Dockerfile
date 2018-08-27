@@ -28,5 +28,5 @@ RUN chmod +x /kubectl && \
     chmod +x /usr/bin/kubectl
 
 VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
-ENTRYPOINT ["/usr/bin/dumb-init", "/entrypoint"]
+ENTRYPOINT ["/bin/bash", "-c", "/entrypoint"]
 CMD ["run", "--working-directory=/home/gitlab-runner"]
